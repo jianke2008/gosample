@@ -51,7 +51,7 @@ func RegisterDB() {
 	// 需要在init中注册定义的model
 	orm.RegisterModelWithPrefix("ninkiCMS_", new(User), new(Catalog), new(Article), new(Links), new(Downloads), new(Product),new(SysData))
 	orm.RegisterDriver("mysql", orm.DRMySQL)
-	orm.RegisterDataBase("default", "mysql", "root:chenjian1234@/cms?charset=utf8")
+	orm.RegisterDataBase("default", "mysql", "root:12344321@/cms?charset=utf8")
 	orm.SetMaxOpenConns("default", 30)
 	orm.DefaultTimeLoc = time.UTC
 }
