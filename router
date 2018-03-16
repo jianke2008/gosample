@@ -1,0 +1,11 @@
+package routers
+
+import (
+	"waw99.com/controllers"
+	"github.com/astaxie/beego"
+)
+
+func init() {
+    beego.Router("/", &controllers.MainController{})
+	beego.Router("/detail", &controllers.DetailController{})
+}
