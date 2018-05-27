@@ -6,8 +6,33 @@ import (
 	"fmt"
 )
 
+type MyHandle func(http.ResponseWriter, *http.Request)
+
+type BaseHttp interface {
+	filter()
+	connect()
+}
+
+type MyRouter struct {
+	pattern string
+	handler MyHandle
+}
+
+func (myRouter MyRouter) filter()  {
+	fmt.Println("过滤http请求")
+}
+
+func (myRouter MyRouter) connect()  {
+	fmt.Println("http请求")
+	http.HandleFunc(myRouter.pattern, MyHandle(myRouter.handler))
+}
+
 func main(){
-	http.HandleFunc("/", route)
+	var b BaseHttp
+	b = MyRouter{"/", route}
+	b.filter()
+	b.connect()
+	//http.HandleFunc("/", route)
 	http.HandleFunc("/api", route)
 	http.ListenAndServe(":8080", nil)
 }
